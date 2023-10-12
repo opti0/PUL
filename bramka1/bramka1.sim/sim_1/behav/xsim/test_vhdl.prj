@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../bramka1.srcs/sources_1/new/bramka.vhd" \
+"../../../../bramka1.srcs/sim_1/new/test.vhd" \
+
+# Do not sort compile order
+nosort
