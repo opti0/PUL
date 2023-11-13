@@ -72,7 +72,7 @@
 *.runs/impl*/*.tcl
 *.runs/impl*/*.bat
 !*.runs/impl*/*utilization*.rpt
-
+*/*.sim/*
 ### block design
 */*/bd/*/hdl
 */*/*/bd/*/hdl
