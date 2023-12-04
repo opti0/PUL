@@ -36,14 +36,35 @@ constant MC_ST: std_logic_vector(15 downto 0) := "0000001000------";
 constant C_ST: std_logic_vector(9 downto 0) := "0000001000";
 constant MC_STS: std_logic_vector(15 downto 0) := "01001-----------";
 constant C_STS: std_logic_vector(4 downto 0) := "01001";
+constant MC_BSET: std_logic_vector(15 downto 0) := "01010-----------";
+constant C_BSET: std_logic_vector(4 downto 0) := "01010";
+constant MC_BCLR: std_logic_vector(15 downto 0) := "01011-----------";
+constant C_BCLR: std_logic_vector(4 downto 0) := "01011";
+constant MC_ADC: std_logic_vector(15 downto 0) := "0000001100------";
+constant C_ADC: std_logic_vector(9 downto 0) := "0000001100";
+constant MC_ADCI: std_logic_vector(15 downto 0) := "01101-----------";
+constant C_ADCI: std_logic_vector(4 downto 0) := "01101";
+constant MC_SBC: std_logic_vector(15 downto 0) := "0000001110------";
+constant C_SBC: std_logic_vector(9 downto 0) := "0000001110";
+constant MC_SBCI: std_logic_vector(15 downto 0) := "01111-----------";
+constant C_SBCI: std_logic_vector(4 downto 0) := "01111";
+constant MC_MUL: std_logic_vector(15 downto 0) := "0000010000------";
+constant C_MUL: std_logic_vector(9 downto 0) := "0000010000";
+constant MC_MULS: std_logic_vector(15 downto 0) := "0000010001------";
+constant C_MULS: std_logic_vector(9 downto 0) := "0000010001";
 
 signal PC: unsigned (7 downto 0) := x"00";
+signal SREG: std_logic_vector(7 downto 0);
 signal IR: std_logic_vector(15 downto 0);
 alias OPCODE: std_logic_vector(7 downto 0) is IR(15 downto 8);
 alias ARG: std_logic_vector(7 downto 0) is IR(7 downto 0);
 alias Rd: std_logic_vector(2 downto 0) is IR(5 downto 3); 
 alias Rs: std_logic_vector(2 downto 0) is IR(2 downto 0);
 alias Id: std_logic_vector(2 downto 0) is IR(10 downto 8); 
+alias SREG_C: std_logic is SREG(0);
+alias SREG_Z: std_logic is SREG(1);
+alias SREG_N: std_logic is SREG(2);
+alias SREG_I: std_logic is SREG(7);
 
 type state_t is (S_FETCH, S_EX);
 signal state: state_t;
@@ -58,6 +79,8 @@ others => x"0000");
 
 begin
 process(RESET, CLK)
+    variable src1, src2: signed(7 downto 0);
+    variable res: signed(8 downto 0);
     begin
     if RESET = '1' then
         state <= S_FETCH;
@@ -93,7 +116,74 @@ process(RESET, CLK)
                     RAM(TO_INTEGER(unsigned(R(TO_INTEGER(unsigned(Rd)))))) <= R(TO_INTEGER(unsigned(Rs)));
                 elsif std_match(IR, MC_STS) then  
                     RAM(TO_INTEGER(unsigned(ARG))) <= R(TO_INTEGER(unsigned(Rs)));                 
-                 end if;
+                elsif std_match(IR, MC_BSET) then  
+                    SREG <= SREG or ARG;
+                elsif std_match(IR, MC_BCLR) then  
+                    SREG <= SREG and not ARG;
+                elsif std_match(IR, MC_ADC) then
+                    src1 := signed(R(TO_INTEGER(unsigned(Rd))));
+                    src2 := signed(R(TO_INTEGER(unsigned(Rs))));
+                    res := "00000000" & SREG_C;
+                    -- SREG_C jest aliasem bitu SREG(0)
+                    res := res + ('0' & src1) + ('0' & src2);
+                    -- Wyznaczanie bitu przeniesienia C bazuj¹ce na rozszerzonej
+                    -- o jeden bit d³ugoœci s³owa
+                    SREG_C <= res(8);
+                    -- Wyznaczenie bitu przeniesienia bazuj¹ce na dokumentacji
+                    -- rozkazu ADC uC Atmega
+                    SREG_C <= (src1(7) and src2(7)) or (src1(7) and not res(7)) or
+                    (src2(7) and not res(7));
+                    -- Obs³uga flagi zera, SREG_Z jest aliasem bitu SREG(1)
+                    if res(7 downto 0) = x"00" then
+                    SREG_Z <= '1';
+                    else
+                    SREG_Z <= '0';
+                    end if;
+                    -- Przepisanie wyniku obliczeñ do rejestru docelowego
+                    R(to_integer(unsigned(Rd))) <= std_logic_vector(res(7 downto 0));
+                elsif std_match(IR, MC_ADCI) then
+                    src1 := signed(R(TO_INTEGER(unsigned(Rd))));
+                    src2 := signed(R(TO_INTEGER(unsigned(ARG))));
+                    res := "00000000" & SREG_C;
+                    res := res + ('0' & src1) + ('0' & src2);
+                    SREG_C <= res(8);
+                    SREG_C <= (src1(7) and src2(7)) or (src1(7) and not res(7)) or
+                    (src2(7) and not res(7));
+                    if res(7 downto 0) = x"00" then
+                    SREG_Z <= '1';
+                    else
+                    SREG_Z <= '0';
+                    end if;
+                    R(to_integer(unsigned(Rd))) <= std_logic_vector(res(7 downto 0));
+                elsif std_match(IR, MC_SBC) then
+                    src1 := signed(R(TO_INTEGER(unsigned(Rd))));
+                    src2 := signed(R(TO_INTEGER(unsigned(Rs))));
+                    res := "00000000" & SREG_C;
+                    res := -res + ('0' & src1) - ('0' & src2);
+                    SREG_C <= res(8);
+                    SREG_C <= (src1(7) and src2(7)) or (src1(7) and not res(7)) or
+                    (src2(7) and not res(7));
+                    if res(7 downto 0) = x"00" then
+                    SREG_Z <= '1';
+                    else
+                    SREG_Z <= '0';
+                    end if;
+                    R(to_integer(unsigned(Rd))) <= std_logic_vector(res(7 downto 0));
+                elsif std_match(IR, MC_SBCI) then
+                    src1 := signed(R(TO_INTEGER(unsigned(Rd))));
+                    src2 := signed(R(TO_INTEGER(unsigned(ARG))));
+                    res := "00000000" & SREG_C;
+                    res := -res + ('0' & src1) - ('0' & src2);
+                    SREG_C <= res(8);
+                    SREG_C <= (src1(7) and src2(7)) or (src1(7) and not res(7)) or
+                    (src2(7) and not res(7));
+                    if res(7 downto 0) = x"00" then
+                    SREG_Z <= '1';
+                    else
+                    SREG_Z <= '0';
+                    end if;
+                    R(to_integer(unsigned(Rd))) <= std_logic_vector(res(7 downto 0));
+                end if;
                   state <= S_FETCH;    
               end case;
        end if;         
