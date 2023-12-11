@@ -19,39 +19,56 @@ signal RAM: ram_array;
 type reg_array is array (0 to 7) of std_logic_vector(7 downto 0);
 signal R: reg_array;
 type rom_t is array (0 to 31) of std_logic_vector(15 downto 0);
-constant C_NOP: std_logic_vector (7 downto 0) := x"00";
-constant C_OUTP: std_logic_vector (7 downto 0) := x"01";
-constant C_B: std_logic_vector (7 downto 0) := x"02";
-constant C_BZ: std_logic_vector (7 downto 0) := x"03";
+constant C_NOP: std_logic_vector (7 downto 0) := "00000000";
+constant C_OUTP: std_logic_vector (7 downto 0) := "00000001";
+constant C_B: std_logic_vector (7 downto 0) := "00000010";
+constant C_BZ: std_logic_vector (7 downto 0) := "00000011";
 
-constant MC_LDI: std_logic_vector(15 downto 0) := "00100-----------";
-constant C_LDI: std_logic_vector(4 downto 0) := "00100";
+constant MC_LDI: std_logic_vector(15 downto 0) := "10000-----------";
+constant C_LDI: std_logic_vector(4 downto 0) := "10000";
+
 constant MC_MOV: std_logic_vector(15 downto 0) := "0000000101------";
 constant C_MOV: std_logic_vector(9 downto 0) := "0000000101";
 constant MC_LD: std_logic_vector(15 downto 0) := "0000000110------";
 constant C_LD: std_logic_vector(9 downto 0) := "0000000110";
-constant MC_LDS: std_logic_vector(15 downto 0) := "00111-----------";
-constant C_LDS: std_logic_vector(4 downto 0) := "00111";
+constant MC_LDS: std_logic_vector(15 downto 0) := "11000-----------";
+constant C_LDS: std_logic_vector(4 downto 0) := "11000";
 constant MC_ST: std_logic_vector(15 downto 0) := "0000001000------";
 constant C_ST: std_logic_vector(9 downto 0) := "0000001000";
-constant MC_STS: std_logic_vector(15 downto 0) := "01001-----------";
-constant C_STS: std_logic_vector(4 downto 0) := "01001";
-constant MC_BSET: std_logic_vector(15 downto 0) := "01010-----------";
-constant C_BSET: std_logic_vector(4 downto 0) := "01010";
-constant MC_BCLR: std_logic_vector(15 downto 0) := "01011-----------";
-constant C_BCLR: std_logic_vector(4 downto 0) := "01011";
+constant MC_STS: std_logic_vector(15 downto 0) := "11100-----------";
+constant C_STS: std_logic_vector(4 downto 0) := "11100";
+
+constant MC_BSET: std_logic_vector(15 downto 0) := "11110-----------";
+constant C_BSET: std_logic_vector(4 downto 0) := "11110";
+constant MC_BCLR: std_logic_vector(15 downto 0) := "11111-----------";
+constant C_BCLR: std_logic_vector(4 downto 0) := "11111";
+
 constant MC_ADC: std_logic_vector(15 downto 0) := "0000001100------";
 constant C_ADC: std_logic_vector(9 downto 0) := "0000001100";
-constant MC_ADCI: std_logic_vector(15 downto 0) := "01101-----------";
-constant C_ADCI: std_logic_vector(4 downto 0) := "01101";
+constant MC_ADCI: std_logic_vector(15 downto 0) := "10111-----------";
+constant C_ADCI: std_logic_vector(4 downto 0) := "10111";
 constant MC_SBC: std_logic_vector(15 downto 0) := "0000001110------";
 constant C_SBC: std_logic_vector(9 downto 0) := "0000001110";
-constant MC_SBCI: std_logic_vector(15 downto 0) := "01111-----------";
-constant C_SBCI: std_logic_vector(4 downto 0) := "01111";
+constant MC_SBCI: std_logic_vector(15 downto 0) := "10011-----------";
+constant C_SBCI: std_logic_vector(4 downto 0) := "10011";
 constant MC_MUL: std_logic_vector(15 downto 0) := "0000010000------";
 constant C_MUL: std_logic_vector(9 downto 0) := "0000010000";
 constant MC_MULS: std_logic_vector(15 downto 0) := "0000010001------";
 constant C_MULS: std_logic_vector(9 downto 0) := "0000010001";
+
+constant MC_AND: std_logic_vector(15 downto 0) := "0000011000------";
+constant C_AND: std_logic_vector(9 downto 0) := "0000011000";
+constant MC_ANDI: std_logic_vector(15 downto 0) := "10001-----------";
+constant C_ANDI: std_logic_vector(4 downto 0) := "10001";
+constant MC_OR: std_logic_vector(15 downto 0) := "0000011100------";
+constant C_OR: std_logic_vector(9 downto 0) := "0000011100";
+constant MC_ORI: std_logic_vector(15 downto 0) := "11011-----------";
+constant C_ORI: std_logic_vector(4 downto 0) := "11011";
+constant MC_XOR: std_logic_vector(15 downto 0) := "0001111000------";
+constant C_XOR: std_logic_vector(9 downto 0) := "0001111000";
+constant MC_XORI: std_logic_vector(15 downto 0) := "11101-----------";
+constant C_XORI: std_logic_vector(4 downto 0) := "11101";
+--na t10 kolejnych 5 instrukcji
 
 signal PC: unsigned (7 downto 0) := x"00";
 signal SREG: std_logic_vector(7 downto 0);
@@ -80,7 +97,10 @@ others => x"0000");
 begin
 process(RESET, CLK)
     variable src1, src2: signed(7 downto 0);
+    variable src3, src4: unsigned(7 downto 0);
     variable res: signed(8 downto 0);
+    variable res2: signed(15 downto 0);
+    variable res1: unsigned (15 downto 0);
     begin
     if RESET = '1' then
         state <= S_FETCH;
@@ -178,11 +198,88 @@ process(RESET, CLK)
                     SREG_C <= (src1(7) and src2(7)) or (src1(7) and not res(7)) or
                     (src2(7) and not res(7));
                     if res(7 downto 0) = x"00" then
-                    SREG_Z <= '1';
+                        SREG_Z <= '1';
                     else
-                    SREG_Z <= '0';
+                        SREG_Z <= '0';
                     end if;
                     R(to_integer(unsigned(Rd))) <= std_logic_vector(res(7 downto 0));
+                elsif std_match(IR, MC_MUL) then
+                    src3 := unsigned(R(TO_INTEGER(unsigned(Rd))));
+                    src4 := unsigned(R(TO_INTEGER(unsigned(Rs))));
+                    res1 := src3 * src4;
+                    R(TO_INTEGER(unsigned(Rd)) + 1) <= std_logic_vector(res1(15 downto 8));
+                    R(TO_INTEGER(unsigned(Rd))) <= std_logic_vector(res1(7 downto 0));
+                elsif std_match(IR, MC_MULS) then
+                    src1 := signed(R(TO_INTEGER(unsigned(Rd))));
+                    src2 := signed(R(TO_INTEGER(unsigned(Rs))));
+                    res2 := src1 * src2;
+                    R(TO_INTEGER(unsigned(Rd)) + 1) <= std_logic_vector(res2(15 downto 8));
+                    R(TO_INTEGER(unsigned(Rd))) <= std_logic_vector(res2(7 downto 0));
+                elsif std_match(IR, MC_AND) then
+                    -- AND Rd, Rs - logical AND of registers Rs and Rd (Rd ? Rd and Rs)
+                    R(TO_INTEGER(unsigned(Rd))) <= R(TO_INTEGER(unsigned(Rd))) and R(TO_INTEGER(unsigned(Rs)));
+                    if R(TO_INTEGER(unsigned(Rd))) = "00000000" then
+                        SREG_Z <= '1';
+                    else
+                        SREG_Z <= '0';
+                    end if;
+                    SREG_N <= R(TO_INTEGER(unsigned(Rd)))(7);
+                    SREG_I <= '0';
+                
+                elsif std_match(IR, MC_ANDI) then
+                    -- ANDI Rd, K - logical AND of register Rd and constant K (Rd ? Rd and K)
+                    R(TO_INTEGER(unsigned(Rd))) <= R(TO_INTEGER(unsigned(Rd))) and ARG;
+                    if R(TO_INTEGER(unsigned(Rd))) = "00000000" then
+                        SREG_Z <= '1';
+                    else
+                        SREG_Z <= '0';
+                    end if;
+                    SREG_N <= R(TO_INTEGER(unsigned(Rd)))(7);
+                    SREG_I <= '0';
+                
+                elsif std_match(IR, MC_OR) then
+                    -- OR Rd, Rs - logical OR of registers Rs and Rd (Rd ? Rd or Rs)
+                    R(TO_INTEGER(unsigned(Rd))) <= R(TO_INTEGER(unsigned(Rd))) or R(TO_INTEGER(unsigned(Rs)));
+                    if R(TO_INTEGER(unsigned(Rd))) = "00000000" then
+                        SREG_Z <= '1';
+                    else
+                        SREG_Z <= '0';
+                    end if;
+                    SREG_N <= R(TO_INTEGER(unsigned(Rd)))(7);
+                    SREG_I <= '0';
+                
+                elsif std_match(IR, MC_ORI) then
+                    -- ORI Rd, K - logical OR of register Rd and constant K (Rd ? Rd or K)
+                    R(TO_INTEGER(unsigned(Rd))) <= R(TO_INTEGER(unsigned(Rd))) or ARG;
+                   if R(TO_INTEGER(unsigned(Rd))) = "00000000" then
+                        SREG_Z <= '1';
+                    else
+                        SREG_Z <= '0';
+                    end if;
+                    SREG_N <= R(TO_INTEGER(unsigned(Rd)))(7);
+                    SREG_I <= '0';
+                
+                elsif std_match(IR, MC_XOR) then
+                    -- XOR Rd, Rs - logical XOR of registers Rs and Rd (Rd ? Rd xor Rs)
+                    R(TO_INTEGER(unsigned(Rd))) <= R(TO_INTEGER(unsigned(Rd))) xor R(TO_INTEGER(unsigned(Rs)));
+                    if R(TO_INTEGER(unsigned(Rd))) = "00000000" then
+                        SREG_Z <= '1';
+                    else
+                        SREG_Z <= '0';
+                    end if;
+                    SREG_N <= R(TO_INTEGER(unsigned(Rd)))(7);
+                    SREG_I <= '0';
+                
+                elsif std_match(IR, MC_XORI) then
+                    -- XORI Rd, K - logical XOR of register Rd and constant K (Rd ? Rd xor K)
+                    R(TO_INTEGER(unsigned(Rd))) <= R(TO_INTEGER(unsigned(Rd))) xor ARG;
+                    if R(TO_INTEGER(unsigned(Rd))) = "00000000" then
+                        SREG_Z <= '1';
+                    else
+                        SREG_Z <= '0';
+                    end if;
+                    SREG_N <= R(TO_INTEGER(unsigned(Rd)))(7);
+                    SREG_I <= '0';
                 end if;
                   state <= S_FETCH;    
               end case;
