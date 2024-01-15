@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="test_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="test" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="318375fs"></ZoomEndTime>
+      <Cursor1Time time="1000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="342"></NameColumnWidth>
+      <ValueColumnWidth column_width="164"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="86" />
+   <wvobject fp_name="/test/z" type="logic">
+      <obj_property name="ElementShortName">z</obj_property>
+      <obj_property name="ObjectShortName">z</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/gpio" type="array">
+      <obj_property name="ElementShortName">gpio[7:0]</obj_property>
+      <obj_property name="ObjectShortName">gpio[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/CLK_period" type="other">
+      <obj_property name="ElementShortName">CLK_period</obj_property>
+      <obj_property name="ObjectShortName">CLK_period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/Z" type="logic">
+      <obj_property name="ElementShortName">Z</obj_property>
+      <obj_property name="ObjectShortName">Z</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/CLK" type="logic">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/RESET" type="logic">
+      <obj_property name="ElementShortName">RESET</obj_property>
+      <obj_property name="ObjectShortName">RESET</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/GPIO" type="array">
+      <obj_property name="ElementShortName">GPIO[7:0]</obj_property>
+      <obj_property name="ObjectShortName">GPIO[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/STATE" type="other">
+      <obj_property name="ElementShortName">STATE</obj_property>
+      <obj_property name="ObjectShortName">STATE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/PC" type="array">
+      <obj_property name="ElementShortName">PC[7:0]</obj_property>
+      <obj_property name="ObjectShortName">PC[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/IR" type="array">
+      <obj_property name="ElementShortName">IR[15:0]</obj_property>
+      <obj_property name="ObjectShortName">IR[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/RAM" type="array">
+      <obj_property name="ElementShortName">RAM[0:31][7:0]</obj_property>
+      <obj_property name="ObjectShortName">RAM[0:31][7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/REG" type="array">
+      <obj_property name="ElementShortName">REG[0:7][7:0]</obj_property>
+      <obj_property name="ObjectShortName">REG[0:7][7:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/SREG" type="array">
+      <obj_property name="ElementShortName">SREG[7:0]</obj_property>
+      <obj_property name="ObjectShortName">SREG[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_MOV" type="array">
+      <obj_property name="ElementShortName">C_MOV[9:0]</obj_property>
+      <obj_property name="ObjectShortName">C_MOV[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_MOV" type="array">
+      <obj_property name="ElementShortName">MC_MOV[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_MOV[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_ST" type="array">
+      <obj_property name="ElementShortName">C_ST[9:0]</obj_property>
+      <obj_property name="ObjectShortName">C_ST[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_ST" type="array">
+      <obj_property name="ElementShortName">MC_ST[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_ST[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_LD" type="array">
+      <obj_property name="ElementShortName">C_LD[9:0]</obj_property>
+      <obj_property name="ObjectShortName">C_LD[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_LD" type="array">
+      <obj_property name="ElementShortName">MC_LD[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_LD[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_ADC" type="array">
+      <obj_property name="ElementShortName">C_ADC[9:0]</obj_property>
+      <obj_property name="ObjectShortName">C_ADC[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_ADC" type="array">
+      <obj_property name="ElementShortName">MC_ADC[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_ADC[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_SBC" type="array">
+      <obj_property name="ElementShortName">C_SBC[9:0]</obj_property>
+      <obj_property name="ObjectShortName">C_SBC[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_SBC" type="array">
+      <obj_property name="ElementShortName">MC_SBC[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_SBC[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_MUL" type="array">
+      <obj_property name="ElementShortName">C_MUL[9:0]</obj_property>
+      <obj_property name="ObjectShortName">C_MUL[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_MUL" type="array">
+      <obj_property name="ElementShortName">MC_MUL[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_MUL[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_MULS" type="array">
+      <obj_property name="ElementShortName">C_MULS[9:0]</obj_property>
+      <obj_property name="ObjectShortName">C_MULS[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_MULS" type="array">
+      <obj_property name="ElementShortName">MC_MULS[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_MULS[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_AND" type="array">
+      <obj_property name="ElementShortName">C_AND[9:0]</obj_property>
+      <obj_property name="ObjectShortName">C_AND[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_AND" type="array">
+      <obj_property name="ElementShortName">MC_AND[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_AND[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_OR" type="array">
+      <obj_property name="ElementShortName">C_OR[9:0]</obj_property>
+      <obj_property name="ObjectShortName">C_OR[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_OR" type="array">
+      <obj_property name="ElementShortName">MC_OR[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_OR[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_XOR" type="array">
+      <obj_property name="ElementShortName">C_XOR[9:0]</obj_property>
+      <obj_property name="ObjectShortName">C_XOR[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_XOR" type="array">
+      <obj_property name="ElementShortName">MC_XOR[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_XOR[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_CP" type="array">
+      <obj_property name="ElementShortName">C_CP[9:0]</obj_property>
+      <obj_property name="ObjectShortName">C_CP[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_CP" type="array">
+      <obj_property name="ElementShortName">MC_CP[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_CP[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_BZ" type="array">
+      <obj_property name="ElementShortName">C_BZ[7:0]</obj_property>
+      <obj_property name="ObjectShortName">C_BZ[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_BZ" type="array">
+      <obj_property name="ElementShortName">MC_BZ[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_BZ[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_BR" type="array">
+      <obj_property name="ElementShortName">C_BR[7:0]</obj_property>
+      <obj_property name="ObjectShortName">C_BR[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_BR" type="array">
+      <obj_property name="ElementShortName">MC_BR[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_BR[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_NOP" type="array">
+      <obj_property name="ElementShortName">C_NOP[15:0]</obj_property>
+      <obj_property name="ObjectShortName">C_NOP[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_NOP" type="array">
+      <obj_property name="ElementShortName">MC_NOP[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_NOP[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_RET" type="array">
+      <obj_property name="ElementShortName">C_RET[15:0]</obj_property>
+      <obj_property name="ObjectShortName">C_RET[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_RET" type="array">
+      <obj_property name="ElementShortName">MC_RET[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_RET[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_RETI" type="array">
+      <obj_property name="ElementShortName">C_RETI[15:0]</obj_property>
+      <obj_property name="ObjectShortName">C_RETI[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_RETI" type="array">
+      <obj_property name="ElementShortName">MC_RETI[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_RETI[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_RETIN" type="array">
+      <obj_property name="ElementShortName">C_RETIN[15:0]</obj_property>
+      <obj_property name="ObjectShortName">C_RETIN[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_RETIN" type="array">
+      <obj_property name="ElementShortName">MC_RETIN[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_RETIN[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_LDI" type="array">
+      <obj_property name="ElementShortName">C_LDI[4:0]</obj_property>
+      <obj_property name="ObjectShortName">C_LDI[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_LDI" type="array">
+      <obj_property name="ElementShortName">MC_LDI[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_LDI[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_STS" type="array">
+      <obj_property name="ElementShortName">C_STS[4:0]</obj_property>
+      <obj_property name="ObjectShortName">C_STS[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_STS" type="array">
+      <obj_property name="ElementShortName">MC_STS[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_STS[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_LDS" type="array">
+      <obj_property name="ElementShortName">C_LDS[4:0]</obj_property>
+      <obj_property name="ObjectShortName">C_LDS[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_LDS" type="array">
+      <obj_property name="ElementShortName">MC_LDS[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_LDS[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_ADCI" type="array">
+      <obj_property name="ElementShortName">C_ADCI[4:0]</obj_property>
+      <obj_property name="ObjectShortName">C_ADCI[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_ADCI" type="array">
+      <obj_property name="ElementShortName">MC_ADCI[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_ADCI[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_SBCI" type="array">
+      <obj_property name="ElementShortName">C_SBCI[4:0]</obj_property>
+      <obj_property name="ObjectShortName">C_SBCI[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_SBCI" type="array">
+      <obj_property name="ElementShortName">MC_SBCI[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_SBCI[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_BSET" type="array">
+      <obj_property name="ElementShortName">C_BSET[7:0]</obj_property>
+      <obj_property name="ObjectShortName">C_BSET[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_BSET" type="array">
+      <obj_property name="ElementShortName">MC_BSET[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_BSET[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_BCLR" type="array">
+      <obj_property name="ElementShortName">C_BCLR[7:0]</obj_property>
+      <obj_property name="ObjectShortName">C_BCLR[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_BCLR" type="array">
+      <obj_property name="ElementShortName">MC_BCLR[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_BCLR[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_RCALL" type="array">
+      <obj_property name="ElementShortName">C_RCALL[7:0]</obj_property>
+      <obj_property name="ObjectShortName">C_RCALL[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_RCALL" type="array">
+      <obj_property name="ElementShortName">MC_RCALL[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_RCALL[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_CALL" type="array">
+      <obj_property name="ElementShortName">C_CALL[7:0]</obj_property>
+      <obj_property name="ObjectShortName">C_CALL[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_CALL" type="array">
+      <obj_property name="ElementShortName">MC_CALL[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_CALL[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_ANDI" type="array">
+      <obj_property name="ElementShortName">C_ANDI[4:0]</obj_property>
+      <obj_property name="ObjectShortName">C_ANDI[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_ANDI" type="array">
+      <obj_property name="ElementShortName">MC_ANDI[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_ANDI[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_ORI" type="array">
+      <obj_property name="ElementShortName">C_ORI[4:0]</obj_property>
+      <obj_property name="ObjectShortName">C_ORI[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_ORI" type="array">
+      <obj_property name="ElementShortName">MC_ORI[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_ORI[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_XORI" type="array">
+      <obj_property name="ElementShortName">C_XORI[4:0]</obj_property>
+      <obj_property name="ObjectShortName">C_XORI[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_XORI" type="array">
+      <obj_property name="ElementShortName">MC_XORI[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_XORI[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_BRBS" type="array">
+      <obj_property name="ElementShortName">C_BRBS[4:0]</obj_property>
+      <obj_property name="ObjectShortName">C_BRBS[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_BRBS" type="array">
+      <obj_property name="ElementShortName">MC_BRBS[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_BRBS[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_BRBC" type="array">
+      <obj_property name="ElementShortName">C_BRBC[4:0]</obj_property>
+      <obj_property name="ObjectShortName">C_BRBC[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_BRBC" type="array">
+      <obj_property name="ElementShortName">MC_BRBC[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_BRBC[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_CPI" type="array">
+      <obj_property name="ElementShortName">C_CPI[4:0]</obj_property>
+      <obj_property name="ObjectShortName">C_CPI[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_CPI" type="array">
+      <obj_property name="ElementShortName">MC_CPI[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_CPI[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_B" type="array">
+      <obj_property name="ElementShortName">C_B[7:0]</obj_property>
+      <obj_property name="ObjectShortName">C_B[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_B" type="array">
+      <obj_property name="ElementShortName">MC_B[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_B[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_OUTP" type="array">
+      <obj_property name="ElementShortName">C_OUTP[4:0]</obj_property>
+      <obj_property name="ObjectShortName">C_OUTP[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_OUTP" type="array">
+      <obj_property name="ElementShortName">MC_OUTP[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_OUTP[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/C_INP" type="array">
+      <obj_property name="ElementShortName">C_INP[4:0]</obj_property>
+      <obj_property name="ObjectShortName">C_INP[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/MC_INP" type="array">
+      <obj_property name="ElementShortName">MC_INP[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MC_INP[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/test/ROM" type="array">
+      <obj_property name="ElementShortName">ROM[0:31][15:0]</obj_property>
+      <obj_property name="ObjectShortName">ROM[0:31][15:0]</obj_property>
+   </wvobject>
+</wave_config>
